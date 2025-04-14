@@ -1,0 +1,167 @@
+{{ block title }}
+    Video Meeting Behavior Preferences
+{{ endblock }}
+
+{{ block content }}
+<!-- load library for RadarChart-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<!-- Page layout -->
+<style>
+
+    .my-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .outer-container {
+        width: 100%;
+        height: 550px;
+        display: flex;
+    }
+
+    /* left container is used for Spider Graph */
+    .left-container {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        overflow: auto;
+        padding: 5px;
+        flex-direction: column;
+    }
+
+    .right-container {
+        width: 40%;
+        height: 100%;
+        padding: 20px;
+        overflow-y: auto;
+        font-family: Arial, sans-serif;
+        font-size: 13px; /* kleinere Grundschrift */
+    }
+
+    .right-container h3 {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-size: 13px; /* kleinerer Überschriftentext */
+    }
+
+    .right-container p {
+        margin: 0 0 12px 0;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    /* Radar Chart Canvas */
+    #myRadarChart {
+        width: 100% !important;
+        height: 500px !important; /* feste Größe für Diagramm */
+    }
+</style>
+
+<div class="my-box">
+
+    <p>
+        In the graph below, you can see how you (green) differ in your video meeting behavior tendencies from the others (grey). <br/>
+        This graph is generated based on the answers you and the others gave earlier.
+    </p>
+</div>
+
+<div class="outer-container">
+    <div class="left-container">
+        <div id="radarChartContainer">
+            <canvas id="myRadarChart"></canvas>
+        </div>
+    </div>
+
+    <div class="right-container">
+        <h3><strong>Ensuring Compliance with Rules</strong></h3>
+        <p>My goal is to adhere to all <u>regulations</u>, <u>laws</u>, and formal <u>obligations</u> in the meeting and <u>encourage others</u> to do the same.</p>
+
+        <h3><strong>Advocating for Justice and Fairness</strong></h3>
+        <p>I want to promote <u>equality</u>, <u>justice</u>, and the <u>protection</u> of all people by <u>emphasizing these values</u> in the discussion.</p>
+
+        <h3><strong>Demonstrating Openness and Understanding</strong></h3>
+        <p>I strive to <u>create</u> an inclusive and <u>respectful atmosphere</u> by <u>accepting</u> and <u>actively supporting</u> different <u>opinions</u> and <u>perspectives</u>.</p>
+
+        <h3><strong>Presenting Success in the Meeting</strong></h3>
+        <p>I want to <u>present myself professionally</u> and <u>competently</u> to highlight my <u>status</u> and <u>success according to societal standards</u>.</p>
+
+        <h3><strong>Exercising Influence and Control</strong></h3>
+        <p>I want to <u>lead</u> and <u>influence the meeting’s direction</u>, <u>ensuring my perspectives shape key decisions</u>.</p>
+
+        <h3><strong>Maintaining My Public Image</strong></h3>
+        <p>I want to <u>ensure that my public reputation remains intact</u> by <u>avoiding mistakes</u> and <u>protecting myself</u> from potential <u>embarrassment</u>.</p>
+    </div>
+
+</div>
+
+<!-- Script for Radar Chart -->
+<script>
+    function createRadarChart(total) {
+        let ctx = document.getElementById('myRadarChart').getContext('2d');
+        let myRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: {{ session.vm_goal_labels }},
+                datasets: [
+                    {
+                        label: 'own',
+                        data: js_vars.own,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'other',
+                        data: js_vars.other1,
+                        backgroundColor: 'rgba(80, 80, 80, 0.2)',
+                        borderColor: 'rgba(80, 80, 80, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'other',
+                        data: js_vars.other2,
+                        backgroundColor: 'rgba(128, 128, 128, 0.2)',
+                        borderColor: 'rgba(128, 128, 128, 1)',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // sorgt dafür, dass die Höhe wirkt
+                scale: {
+                    ticks: {
+                        beginAtZero: true,
+                        max: 6
+                    },
+                    pointLabels: {
+                        padding: 20 // mehr Abstand zu den Labels
+                    }
+                }
+            }
+        });
+    }
+
+    createRadarChart(5);
+</script>
+
+<div class="my-box">
+
+    <p>
+        Please imagine that you would meet your team to virtually collaborate on a joint project.
+
+        {{ formfields }}
+        *your choice will remain anonymous to the others
+    </p>
+</div>
+
+<br/>
+{{ next_button }}
+
+{{ endblock }}

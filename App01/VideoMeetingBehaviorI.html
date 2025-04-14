@@ -1,0 +1,23 @@
+{{ block title }}Behavior in Video Meetings{{ endblock }}
+{{ block content }}
+
+
+<style>
+    .my-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+</style>
+ Thinking about your normal behavior in video meetings, on a scale from 1 (not at all) to 7 (absolut) to what extent would you agree to the following satements?
+
+<div class="my-box">
+ {{ formfields }}
+</div>
+
+<br/>
+
+<p>{{ next_button }}</p>
+
+{{ endblock }}
+

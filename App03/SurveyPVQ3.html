@@ -1,0 +1,41 @@
+{{ block title }}
+PVQ-RR Questionnaire (3/6)
+{{ endblock }}
+
+{{ block content }}
+
+<p>
+    <b>HOW MUCH LIKE YOU IS THIS PERSON?</b>
+</p>
+
+
+<table class="table table-striped">
+    <tr>
+        <th></th>
+        <th>Not like me at all</th>
+        <th>Not like me</th>
+        <th>A little like me </th>
+        <th>Moderately like me</th>
+        <th>Like me</th>
+        <th>Very much like me</th>
+    </tr>
+    {{ for field in form }}
+    <tr>
+        <th>{{ field.label }}</th>
+        {{ for option in field }}
+        <td>{{ option }}</td>
+        {{ endfor }}
+    </tr>
+    {{ endfor }}
+</table>
+
+{{ next_button }}
+
+<script>
+    // workaround needed until wtforms #615 is published
+    for (let option of document.querySelectorAll('input[type=radio]')) {
+        option.required = 'required';
+    }
+</script>
+
+{{ endblock }}

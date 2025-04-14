@@ -1,0 +1,42 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Consent Form{{ endblock }}
+
+{{ block content }}
+<style>
+label {
+  display: inline-block;
+}
+.my-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+}
+</style>
+
+
+<div class="my-box">
+<label>
+
+    <p>Before we start, we want to give you some information about the study and inform you about data protection.</p>
+
+    <h4><b>Principal Investigator: </b></h4>
+    <p>Christof Weinhardt (Karlsruhe Institute of Technology)</p>
+
+    <h4><b>Description:</b></h4>
+    <p>We study the role of personality and shared mental models in the context of virtual collaboration. This study will take no longer than 45 minutes of your time.</p>
+
+    <h4><b>Risk and benefits:</b></h4>
+    <p>There are no physical or emotional risks associated with this study that would go beyond the risks of daily life. Your participation may improve remote work and benefit society.</p>
+
+    <h4><b>Confidentiality:</b></h4>
+    <p>The information collected in this study may be published in a report or a journal article and presented to interested parties, including possibly, but not exclusively, members of editorial boards or scientific committees. We do not collect your IP address and will delete the Participant ID from the dataset 10 years after the completion of the study. Other information (e.g., survey responses, time of the survey) will be kept by the researchers and may be used for future studies. </p>
+
+    <p>If you want further information about data protection, please click
+        <a href="{{ static '02Privacy.pdf'}}" target="_blank">here</a>.
+    </p>
+
+</label>
+</div>
+<br/><br/>
+{{next_button}}
+{{ endblock }}

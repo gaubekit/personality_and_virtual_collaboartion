@@ -1,0 +1,33 @@
+{{ extends 'global/Page.html' }}
+{{ block title }} Welcome{{ endblock }}
+
+{{ block content }}
+
+<style>
+    .my-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+</style>
+
+<div class="my-box">
+    
+    Welcome to this study!
+    <br/> <br/>
+
+    The purpose of this study is to investigate the relationship of individual personality characteristics and collaborative behavior in virtual teams.
+    <br/><br/>
+    Beneath a fixed payout, you will earn additional money based on decisions you and the others made. We will use the fictitious currency ECU during the study. At the end of the study, we will convert the ECU to EUR to pay you. One ECU equals 0.01 EUR.
+    The Study will take 30 to 45 minutes andy you will be paid a compensation of EUR 5.00 - 8.00 for participating.
+    <br/><br/>
+    On the next pages, we will give you a short overview of the experiment, provide you with some general study information, and ask for your consent.
+    <br/> <br/>
+
+    Please use the 'Next' button to continue with the experiment.
+</div>
+
+<br/><br/>
+{{ next_button }}
+
+{{ endblock }}
